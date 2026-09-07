@@ -1,0 +1,60 @@
+{
+  "skill_name": "uv-python-cli",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a new Python 3.12 CLI project with the distribution name weather-station in the current empty directory, whose directory has a different name. The import package should be weather_core, but users should run it as forecast. Use argparse, and make `forecast --help` work. Manage it entirely with uv.",
+      "expected_output": "A uv_build-backed src-layout project initialized with the explicit distribution name, configured to package weather_core, with a forecast project.scripts entry point, a compatible Python pin, a passing behavior test, the required Ruff, ty, and pytest quality stack, and successful uv run and uv tool install verification instructions.",
+      "files": [],
+      "expectations": [
+        "Uses uv init with the explicit uv build backend",
+        "Passes the distribution name explicitly when initializing the differently named current directory",
+        "Configures uv_build module-name for the non-default weather_core import package",
+        "Defines forecast as a project.scripts entry point",
+        "Creates at least one passing behavior test",
+        "Adds and runs Ruff, ty, and pytest before installation verification",
+        "Verifies the command with both uv run and uv tool install"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Scaffold an installable CLI called logpeek with a minimum Python version of 3.11. It needs Rich at runtime. Use a conventional packaged uv app with the required Ruff, ty, and pytest quality gate, and explain which generated files should be committed.",
+      "expected_output": "A uv-managed packaged CLI using project dependencies for Rich, a dev dependency group for Ruff, ty, and pytest, Python pinning, and clear lockfile guidance.",
+      "files": [],
+      "expectations": [
+        "Adds Rich with uv add as a runtime dependency",
+        "Adds pytest, Ruff, and ty with uv add --dev",
+        "Configures Ruff src and E, F, I, UP rules without setting target-version",
+        "Runs formatting, linting, type checking, and testing as one quality gate",
+        "Shows both Ruff fixing commands and the complete non-mutating quality gate",
+        "Distinguishes .python-version from project.requires-python",
+        "Recommends committing pyproject.toml and uv.lock"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Prepare my existing pure-Python, Hatchling-backed src-layout CLI for its first public release and migrate it to uv_build. The distribution is repo-audit, the package is repo_audit, and the command is audit. Show the pyproject entry point, local install checks, the uv build/publish sequence, and what users run after it reaches PyPI.",
+      "expected_output": "Release-ready guidance that skips initialization, replaces Hatchling with uv_build, and covers project.scripts, editable and non-editable tool installation, artifact building, publishing, and post-PyPI installation.",
+      "files": [],
+      "expectations": [
+        "Does not run uv init and replaces Hatchling with uv_build",
+        "Maps audit to an importable repo_audit callable",
+        "Checks editable and ordinary local uv tool installations",
+        "Builds with uv build --no-sources before uv publish",
+        "Shows uv tool install repo-audit for published users",
+        "Does not imply that pushing only to GitHub publishes the package to PyPI"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Create a new installable Python CLI named notes-export. Use uv, expose a notes-export command, and include formatting, linting, type checking, and tests.",
+      "expected_output": "A focused clarification asking for the minimum supported Python version before project initialization; no Python version is guessed.",
+      "files": [],
+      "expectations": [
+        "Asks the user for the minimum supported Python version",
+        "Does not select or suggest a default Python version",
+        "Does not initialize or scaffold the project before receiving the answer"
+      ]
+    }
+  ]
+}
